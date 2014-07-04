@@ -1,0 +1,467 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84528EDD1966866B009A3692 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84528EDC1966866B009A3692 /* Foundation.framework */; };
+		84528EDF1966866B009A3692 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84528EDE1966866B009A3692 /* CoreGraphics.framework */; };
+		84528EE11966866B009A3692 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84528EE01966866B009A3692 /* UIKit.framework */; };
+		84528EE71966866B009A3692 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84528EE51966866B009A3692 /* InfoPlist.strings */; };
+		84528EE91966866B009A3692 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84528EE81966866B009A3692 /* main.m */; };
+		84528EED1966866B009A3692 /* BLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84528EEC1966866B009A3692 /* BLAppDelegate.m */; };
+		84528EEF1966866B009A3692 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84528EEE1966866B009A3692 /* Images.xcassets */; };
+		84528EF61966866B009A3692 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84528EF51966866B009A3692 /* XCTest.framework */; };
+		84528EF71966866B009A3692 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84528EDC1966866B009A3692 /* Foundation.framework */; };
+		84528EF81966866B009A3692 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84528EE01966866B009A3692 /* UIKit.framework */; };
+		84528F001966866B009A3692 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84528EFE1966866B009A3692 /* InfoPlist.strings */; };
+		84528F021966866B009A3692 /* FractalTerrainTextureGenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84528F011966866B009A3692 /* FractalTerrainTextureGenTests.m */; };
+		84528F0D1966867B009A3692 /* BLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84528F0C1966867B009A3692 /* BLMainViewController.m */; };
+		84528F10196686AB009A3692 /* BLFractalTextureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84528F0F196686AB009A3692 /* BLFractalTextureView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84528EF91966866B009A3692 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84528ED11966866A009A3692 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84528ED81966866B009A3692;
+			remoteInfo = FractalTerrainTextureGen;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		84528ED91966866B009A3692 /* FractalTerrainTextureGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FractalTerrainTextureGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84528EDC1966866B009A3692 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		84528EDE1966866B009A3692 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		84528EE01966866B009A3692 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		84528EE41966866B009A3692 /* FractalTerrainTextureGen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FractalTerrainTextureGen-Info.plist"; sourceTree = "<group>"; };
+		84528EE61966866B009A3692 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84528EE81966866B009A3692 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84528EEA1966866B009A3692 /* FractalTerrainTextureGen-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FractalTerrainTextureGen-Prefix.pch"; sourceTree = "<group>"; };
+		84528EEB1966866B009A3692 /* BLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLAppDelegate.h; sourceTree = "<group>"; };
+		84528EEC1966866B009A3692 /* BLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLAppDelegate.m; sourceTree = "<group>"; };
+		84528EEE1966866B009A3692 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		84528EF41966866B009A3692 /* FractalTerrainTextureGenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FractalTerrainTextureGenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84528EF51966866B009A3692 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		84528EFD1966866B009A3692 /* FractalTerrainTextureGenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FractalTerrainTextureGenTests-Info.plist"; sourceTree = "<group>"; };
+		84528EFF1966866B009A3692 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84528F011966866B009A3692 /* FractalTerrainTextureGenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FractalTerrainTextureGenTests.m; sourceTree = "<group>"; };
+		84528F0B1966867B009A3692 /* BLMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMainViewController.h; sourceTree = "<group>"; };
+		84528F0C1966867B009A3692 /* BLMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLMainViewController.m; sourceTree = "<group>"; };
+		84528F0E196686AB009A3692 /* BLFractalTextureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLFractalTextureView.h; sourceTree = "<group>"; };
+		84528F0F196686AB009A3692 /* BLFractalTextureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLFractalTextureView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84528ED61966866B009A3692 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84528EDF1966866B009A3692 /* CoreGraphics.framework in Frameworks */,
+				84528EE11966866B009A3692 /* UIKit.framework in Frameworks */,
+				84528EDD1966866B009A3692 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84528EF11966866B009A3692 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84528EF61966866B009A3692 /* XCTest.framework in Frameworks */,
+				84528EF81966866B009A3692 /* UIKit.framework in Frameworks */,
+				84528EF71966866B009A3692 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84528ED01966866A009A3692 = {
+			isa = PBXGroup;
+			children = (
+				84528EE21966866B009A3692 /* FractalTerrainTextureGen */,
+				84528EFB1966866B009A3692 /* FractalTerrainTextureGenTests */,
+				84528EDB1966866B009A3692 /* Frameworks */,
+				84528EDA1966866B009A3692 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84528EDA1966866B009A3692 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84528ED91966866B009A3692 /* FractalTerrainTextureGen.app */,
+				84528EF41966866B009A3692 /* FractalTerrainTextureGenTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84528EDB1966866B009A3692 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84528EDC1966866B009A3692 /* Foundation.framework */,
+				84528EDE1966866B009A3692 /* CoreGraphics.framework */,
+				84528EE01966866B009A3692 /* UIKit.framework */,
+				84528EF51966866B009A3692 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84528EE21966866B009A3692 /* FractalTerrainTextureGen */ = {
+			isa = PBXGroup;
+			children = (
+				84528EEB1966866B009A3692 /* BLAppDelegate.h */,
+				84528EEC1966866B009A3692 /* BLAppDelegate.m */,
+				84528EEE1966866B009A3692 /* Images.xcassets */,
+				84528EE31966866B009A3692 /* Supporting Files */,
+				84528F0B1966867B009A3692 /* BLMainViewController.h */,
+				84528F0C1966867B009A3692 /* BLMainViewController.m */,
+				84528F0E196686AB009A3692 /* BLFractalTextureView.h */,
+				84528F0F196686AB009A3692 /* BLFractalTextureView.m */,
+			);
+			path = FractalTerrainTextureGen;
+			sourceTree = "<group>";
+		};
+		84528EE31966866B009A3692 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84528EE41966866B009A3692 /* FractalTerrainTextureGen-Info.plist */,
+				84528EE51966866B009A3692 /* InfoPlist.strings */,
+				84528EE81966866B009A3692 /* main.m */,
+				84528EEA1966866B009A3692 /* FractalTerrainTextureGen-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84528EFB1966866B009A3692 /* FractalTerrainTextureGenTests */ = {
+			isa = PBXGroup;
+			children = (
+				84528F011966866B009A3692 /* FractalTerrainTextureGenTests.m */,
+				84528EFC1966866B009A3692 /* Supporting Files */,
+			);
+			path = FractalTerrainTextureGenTests;
+			sourceTree = "<group>";
+		};
+		84528EFC1966866B009A3692 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84528EFD1966866B009A3692 /* FractalTerrainTextureGenTests-Info.plist */,
+				84528EFE1966866B009A3692 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84528ED81966866B009A3692 /* FractalTerrainTextureGen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84528F051966866B009A3692 /* Build configuration list for PBXNativeTarget "FractalTerrainTextureGen" */;
+			buildPhases = (
+				84528ED51966866B009A3692 /* Sources */,
+				84528ED61966866B009A3692 /* Frameworks */,
+				84528ED71966866B009A3692 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FractalTerrainTextureGen;
+			productName = FractalTerrainTextureGen;
+			productReference = 84528ED91966866B009A3692 /* FractalTerrainTextureGen.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84528EF31966866B009A3692 /* FractalTerrainTextureGenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84528F081966866B009A3692 /* Build configuration list for PBXNativeTarget "FractalTerrainTextureGenTests" */;
+			buildPhases = (
+				84528EF01966866B009A3692 /* Sources */,
+				84528EF11966866B009A3692 /* Frameworks */,
+				84528EF21966866B009A3692 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84528EFA1966866B009A3692 /* PBXTargetDependency */,
+			);
+			name = FractalTerrainTextureGenTests;
+			productName = FractalTerrainTextureGenTests;
+			productReference = 84528EF41966866B009A3692 /* FractalTerrainTextureGenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84528ED11966866A009A3692 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BL;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Alexander.Sviridov;
+				TargetAttributes = {
+					84528EF31966866B009A3692 = {
+						TestTargetID = 84528ED81966866B009A3692;
+					};
+				};
+			};
+			buildConfigurationList = 84528ED41966866A009A3692 /* Build configuration list for PBXProject "FractalTerrainTextureGen" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 84528ED01966866A009A3692;
+			productRefGroup = 84528EDA1966866B009A3692 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84528ED81966866B009A3692 /* FractalTerrainTextureGen */,
+				84528EF31966866B009A3692 /* FractalTerrainTextureGenTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84528ED71966866B009A3692 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84528EE71966866B009A3692 /* InfoPlist.strings in Resources */,
+				84528EEF1966866B009A3692 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84528EF21966866B009A3692 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84528F001966866B009A3692 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84528ED51966866B009A3692 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84528F10196686AB009A3692 /* BLFractalTextureView.m in Sources */,
+				84528F0D1966867B009A3692 /* BLMainViewController.m in Sources */,
+				84528EED1966866B009A3692 /* BLAppDelegate.m in Sources */,
+				84528EE91966866B009A3692 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84528EF01966866B009A3692 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84528F021966866B009A3692 /* FractalTerrainTextureGenTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84528EFA1966866B009A3692 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84528ED81966866B009A3692 /* FractalTerrainTextureGen */;
+			targetProxy = 84528EF91966866B009A3692 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		84528EE51966866B009A3692 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84528EE61966866B009A3692 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		84528EFE1966866B009A3692 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84528EFF1966866B009A3692 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84528F031966866B009A3692 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84528F041966866B009A3692 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84528F061966866B009A3692 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FractalTerrainTextureGen/FractalTerrainTextureGen-Prefix.pch";
+				INFOPLIST_FILE = "FractalTerrainTextureGen/FractalTerrainTextureGen-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		84528F071966866B009A3692 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FractalTerrainTextureGen/FractalTerrainTextureGen-Prefix.pch";
+				INFOPLIST_FILE = "FractalTerrainTextureGen/FractalTerrainTextureGen-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		84528F091966866B009A3692 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FractalTerrainTextureGen.app/FractalTerrainTextureGen";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FractalTerrainTextureGen/FractalTerrainTextureGen-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "FractalTerrainTextureGenTests/FractalTerrainTextureGenTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		84528F0A1966866B009A3692 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FractalTerrainTextureGen.app/FractalTerrainTextureGen";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FractalTerrainTextureGen/FractalTerrainTextureGen-Prefix.pch";
+				INFOPLIST_FILE = "FractalTerrainTextureGenTests/FractalTerrainTextureGenTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84528ED41966866A009A3692 /* Build configuration list for PBXProject "FractalTerrainTextureGen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84528F031966866B009A3692 /* Debug */,
+				84528F041966866B009A3692 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84528F051966866B009A3692 /* Build configuration list for PBXNativeTarget "FractalTerrainTextureGen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84528F061966866B009A3692 /* Debug */,
+				84528F071966866B009A3692 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		84528F081966866B009A3692 /* Build configuration list for PBXNativeTarget "FractalTerrainTextureGenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84528F091966866B009A3692 /* Debug */,
+				84528F0A1966866B009A3692 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84528ED11966866A009A3692 /* Project object */;
+}
