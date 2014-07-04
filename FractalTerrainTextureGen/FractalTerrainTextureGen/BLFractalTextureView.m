@@ -40,15 +40,17 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 		
 		landGenBlock = [^{
 			NSLog(@"genblock");
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 				if ( iteration < 10 )
 				{
 					[self generateWithR:1. / ( pow( iteration , 2 )  + 4)];
 					++iteration;
-					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+					dispatch_async(dispatch_get_main_queue(), ^{
 						[self setNeedsDisplay];
 						landGenBlock();
 					});
+//					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//					});
 				}
 				else {
 					NSLog(@"over");
@@ -68,21 +70,31 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 {
 //	NSAssert(height >= -1, @"");
 //	NSAssert(height <= 1, @"");
-	NSArray *colors = @[ [UIColor colorWithRed:0.158 green:0.130 blue:0.571 alpha:1.000], [UIColor colorWithRed:0.203 green:0.695 blue:0.999 alpha:1.000], [UIColor colorWithRed:0.416 green:0.923 blue:0.999 alpha:1.000], [UIColor colorWithRed:0.956 green:1.000 blue:0.318 alpha:1.000], [UIColor colorWithRed:0.555 green:0.866 blue:0.365 alpha:1.000], [UIColor colorWithRed:0.333 green:0.655 blue:0.147 alpha:1.000], [UIColor colorWithRed:0.419 green:0.373 blue:0.337 alpha:1.000], [UIColor whiteColor] ];
-	NSArray *colorHeightIndicators = @[ @(-1.2), @(-1), @( -0.01), @0, @(0.01), @( 0.4), @( 0.7), @(1) ];
-	if ( height < [[colorHeightIndicators firstObject] floatValue] )
+	NSArray *colors = @[
+						[UIColor colorWithRed:0.158 green:0.130 blue:0.571 alpha:1.000],
+						[UIColor colorWithRed:0.416 green:0.923 blue:0.999 alpha:1.000],
+						[UIColor colorWithRed:0.913 green:1.000 blue:0.281 alpha:1.000],
+						[UIColor colorWithRed:0.555 green:0.866 blue:0.365 alpha:1.000],
+						[UIColor colorWithRed:0.333 green:0.655 blue:0.147 alpha:1.000],
+						[UIColor colorWithRed:0.320 green:0.280 blue:0.240 alpha:1.000],
+						[UIColor colorWithWhite:1.000 alpha:1.000] ];
+	NSArray *colorHeightIndicators = @[ @(-1.2), @( -0.01), @0, @(0.01), @( 0.4), @( 0.7), @(1)];
+
+	if ( height <= [[colorHeightIndicators firstObject] floatValue] )
 	{
 		return [colors firstObject];
 	}
-	if ( height > [[colorHeightIndicators lastObject] floatValue] )
+	if ( height >= [[colorHeightIndicators lastObject] floatValue] )
 	{
 		return [colors lastObject];
 	}
-	for ( int colorHeightIndicatorIndex = 0; colorHeightIndicatorIndex < colorHeightIndicators.count; ++colorHeightIndicatorIndex) {
+	for ( int colorHeightIndicatorIndex = 1; colorHeightIndicatorIndex < colorHeightIndicators.count; ++colorHeightIndicatorIndex) {
 		NSNumber *colorHeightIndicator = colorHeightIndicators[colorHeightIndicatorIndex];
 		if ( height < colorHeightIndicator.floatValue )
 		{
-			CGFloat delta = colorHeightIndicator.floatValue - height;
+			CGFloat delta = (colorHeightIndicator.floatValue - height ) / fabsf([colorHeightIndicators[ colorHeightIndicatorIndex - 1] floatValue] - colorHeightIndicator.floatValue);
+//			NSAssert(delta >= 0, @"");
+//			NSAssert(delta <= 1, @"");
 			return [BLFractalTextureView colorFromColor:colors[colorHeightIndicatorIndex - 1] toColor:colors[colorHeightIndicatorIndex] withProgress:1- delta];
 		}
 	}
@@ -179,13 +191,13 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 //			[self printGrid:newGrid withSize:gridSize * 2 - 1 withLabel:@"newGrid randSenters"];
 		}
 	}
-	gridmaxHeight = 0.1;
-	for ( int i = 0; i < pow(newSize, 2); ++ i)
-	{
-		gridmaxHeight = MAX(gridmaxHeight, newGrid[i]);
-	}
 	@synchronized( self )
 	{
+		gridmaxHeight = 0.1;
+		for ( int i = 0; i < pow(newSize, 2); ++ i)
+		{
+			gridmaxHeight = MAX(gridmaxHeight, newGrid[i]);
+		}
 		gridSize = newSize;
 		free(grid);
 		grid = newGrid;
@@ -197,21 +209,19 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-	_isDrawing = YES;
     // Drawing code
+	@synchronized( self )
+	{
 	CGContextRef c = UIGraphicsGetCurrentContext();
 	CGRect bounds = self.bounds;
 	CGContextClearRect(c, bounds);
 	CGContextSetFillColor(c, CGColorGetComponents( [UIColor colorWithWhite:1.000 alpha:1.000].CGColor ));
 	CGContextFillRect(c, bounds);
-	_isDrawing = NO;
 	CGSize pointsize = CGSizeMake( CGRectGetWidth(bounds) / gridSize, CGRectGetHeight(bounds) / gridSize );
 	CGRect pointRect = (CGRect){ .origin = CGPointZero, .size = pointsize };
 	pointRect.size.width += 1;
 	pointRect.size.height += 1;
 	NSLog(@"start drawing [maxHeight:%.02f]", gridmaxHeight );
-	@synchronized( self )
-	{
 		
 		for ( int iy = 0; iy < gridSize; ++iy )
 		{
