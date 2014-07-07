@@ -8,6 +8,11 @@
 
 static CGFloat const kBLFractalTextureView_R = 2.;
 
+typedef struct
+{
+	CGFloat red, green, blue;
+} BLFractalTextureView_Color;
+
 #import "BLFractalTextureView.h"
 
 @implementation BLFractalTextureView
@@ -29,7 +34,7 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 		grid[0] = grid[1] = grid[2] = grid[3] = 0;
 
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-			for ( int iteration = 0; iteration < 10; ++iteration )
+			for ( int iteration = 0; iteration < 12; ++iteration )
 			{
 				[self generateWithR:1. / ( pow( iteration , 2 )  + 4)];
 				dispatch_async(dispatch_get_main_queue(), ^{
@@ -41,7 +46,63 @@ static CGFloat const kBLFractalTextureView_R = 2.;
     return self;
 }
 
-- (UIColor *)colorForHeight:(CGFloat)height
+- (BLFractalTextureView_Color)colorForHeight:(CGFloat)height
+{
+	BLFractalTextureView_Color resultColor;
+	static CGFloat colors[] = {
+		//Red, Green, Blue,  Height
+		0.152, 0.422, 0.595, -1.2,
+		0.260, 0.498, 0.892, -0.01,
+		0.825, 0.925, 0.271, 0,
+		0.555, 0.866, 0.365, 0.01,
+		0.333, 0.655, 0.147, 0.5,
+		0.384, 0.362, 0.275, 0.6,
+		0.320, 0.280, 0.240, 0.8,
+		0.935, 0.935, 0.935, 0.9,
+		1.000, 1.000, 1.000, 1,
+		};
+	if ( height <= colors[3] )
+	{
+		resultColor.red   = colors[0];
+		resultColor.green = colors[1];
+		resultColor.blue  = colors[2];
+		return resultColor;
+	}
+	int lastIndex = sizeof(colors)/sizeof(CGFloat) - 1;
+	if ( height >= colors[lastIndex ] )
+	{
+		resultColor.red   = lastIndex - 1;
+		resultColor.green = lastIndex - 2;
+		resultColor.blue  = lastIndex - 3;
+		return resultColor;
+	}
+	int count = sizeof(colors)/sizeof(CGFloat) / 4;
+	for ( int colorHeightIndicatorIndex = 1; colorHeightIndicatorIndex < count; ++colorHeightIndicatorIndex) {
+		CGFloat colorHeightIndicator = colors[ colorHeightIndicatorIndex * 4 + 3 ];
+//		NSNumber *colorHeightIndicator = colorHeightIndicators[colorHeightIndicatorIndex];
+		if ( height < colorHeightIndicator )
+		{
+			CGFloat delta = (colorHeightIndicator - height ) / fabsf(colors[ (colorHeightIndicatorIndex -1)* 4 + 3] - colorHeightIndicator);
+			//			NSAssert(delta >= 0, @"");
+			//			NSAssert(delta <= 1, @"");
+			CGFloat newRed   = colors[ (colorHeightIndicatorIndex - 1 ) * 4 + 0] * delta + colors[ (colorHeightIndicatorIndex ) * 4 + 0] * ( 1 - delta);
+			CGFloat newGreen = colors[ (colorHeightIndicatorIndex - 1 ) * 4 + 1] * delta + colors[ (colorHeightIndicatorIndex ) * 4 + 1] * ( 1 - delta);
+			CGFloat newBlue  = colors[ (colorHeightIndicatorIndex - 1 ) * 4 + 2] * delta + colors[ (colorHeightIndicatorIndex ) * 4 + 2] * ( 1 - delta);
+//			newBlue = 0;
+//			NSLog(@"R:%.02f G:%.02f B:%.02f", newRed, newGreen, newBlue );
+//			newBlue = arc4random() / INT32_MAX;
+//			newRed = arc4random() / INT32_MAX;
+//			newGreen = arc4random() / INT32_MAX;
+			resultColor.red   = newRed;// * delta + colors[ (colorHeightIndicatorIndex ) * 4 + 0] * ( 1 - delta);
+			resultColor.green = newGreen;// * delta + colors[ (colorHeightIndicatorIndex ) * 4 + 1] * ( 1 - delta);
+			resultColor.blue  = newBlue;// * delta + colors[ (colorHeightIndicatorIndex ) * 4 + 2] * ( 1 - delta);
+			return resultColor;
+		}
+	}
+	return resultColor;
+}
+
+- (UIColor *)uicolorForHeight:(CGFloat)height
 {
 //	NSAssert(height >= -1, @"");
 //	NSAssert(height <= 1, @"");
@@ -185,10 +246,18 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 			{
 				pointRect.origin = CGPointMake(ix * pointsize.width, iy * pointsize.height);
 				CGFloat componentHeight = grid[ iy * gridSize + ix ] / gridmaxHeight;
-				CGContextSetFillColor(c, CGColorGetComponents( [self colorForHeight:componentHeight].CGColor ));
+				CGFloat *colorComponents = calloc(4, sizeof(CGFloat));
+				colorComponents[3] = 1;
+				BLFractalTextureView_Color resultColor = [self colorForHeight:componentHeight];
+				colorComponents[0] = resultColor.red;
+				colorComponents[1] = resultColor.green;
+				colorComponents[2] = resultColor.blue;
+				CGContextSetFillColor(c, colorComponents );
+				
 				//grayscale display
 //				CGContextSetFillColor(c, CGColorGetComponents( [UIColor colorWithRed:componentHeight green:componentHeight blue:componentHeight alpha:1].CGColor ));
 				CGContextFillRect(c, pointRect);
+				free(colorComponents);
 			}
 		}
 	}
