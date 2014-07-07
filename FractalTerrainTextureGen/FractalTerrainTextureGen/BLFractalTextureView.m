@@ -16,10 +16,6 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 	int gridSize;
 	CGFloat *grid;
 	CGFloat gridmaxHeight;
-
-	int iteration;
-	
-	void (^landGenBlock)();
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -27,41 +23,20 @@ static CGFloat const kBLFractalTextureView_R = 2.;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//		[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 		_isDrawing = NO;
 		gridSize = 2;
 		grid = calloc(4, sizeof(CGFloat));
 		grid[0] = grid[1] = grid[2] = grid[3] = 0;
-		iteration = 0;
-		for ( int i = 0; i < 4; ++i )
-		{
-			NSLog(@"%lf", pow(2, i));
-		}
-		
-		landGenBlock = [^{
-			NSLog(@"genblock");
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-				if ( iteration < 10 )
-				{
-					[self generateWithR:1. / ( pow( iteration , 2 )  + 4)];
-					++iteration;
-					dispatch_async(dispatch_get_main_queue(), ^{
-						[self setNeedsDisplay];
-						landGenBlock();
-					});
-//					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//					});
-				}
-				else {
-					NSLog(@"over");
-				}
-			});
-		} copy];
-		landGenBlock();
-//		for ( char i = 0; i < 8; ++i )
-//		{
-//			[self generateWithR:kBLFractalTextureView_R/ (i + 1)];
-//		}
+
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+			for ( int iteration = 0; iteration < 10; ++iteration )
+			{
+				[self generateWithR:1. / ( pow( iteration , 2 )  + 4)];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[self setNeedsDisplay];
+				});
+			}
+		});
     }
     return self;
 }
@@ -71,14 +46,16 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 //	NSAssert(height >= -1, @"");
 //	NSAssert(height <= 1, @"");
 	NSArray *colors = @[
-						[UIColor colorWithRed:0.158 green:0.130 blue:0.571 alpha:1.000],
-						[UIColor colorWithRed:0.416 green:0.923 blue:0.999 alpha:1.000],
-						[UIColor colorWithRed:0.913 green:1.000 blue:0.281 alpha:1.000],
+						[UIColor colorWithRed:0.152 green:0.422 blue:0.595 alpha:1.000],
+						[UIColor colorWithRed:0.260 green:0.498 blue:0.892 alpha:1.000],
+						[UIColor colorWithRed:0.825 green:0.925 blue:0.271 alpha:1.000],
 						[UIColor colorWithRed:0.555 green:0.866 blue:0.365 alpha:1.000],
 						[UIColor colorWithRed:0.333 green:0.655 blue:0.147 alpha:1.000],
+						[UIColor colorWithRed:0.384 green:0.362 blue:0.275 alpha:1.000],
 						[UIColor colorWithRed:0.320 green:0.280 blue:0.240 alpha:1.000],
+						[UIColor colorWithWhite:0.935 alpha:1.000],
 						[UIColor colorWithWhite:1.000 alpha:1.000] ];
-	NSArray *colorHeightIndicators = @[ @(-1.2), @( -0.01), @0, @(0.01), @( 0.4), @( 0.7), @(1)];
+	NSArray *colorHeightIndicators = @[ @(-1.2), @( -0.01), @0, @(0.01), @( 0.5), @(0.6), @( 0.8), @(.9), @(1)];
 
 	if ( height <= [[colorHeightIndicators firstObject] floatValue] )
 	{
@@ -118,12 +95,7 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 - (void)generateWithR:(CGFloat)rougntValue
 {
 	NSLog(@"%s value=%f", __PRETTY_FUNCTION__, rougntValue );
-//	if ( _isDrawing )
-//	{
-//		NSLog(@"%s is drawing, skeep", __PRETTY_FUNCTION__ );
-//		return;
-//	}
-//	
+
 	int newSize = gridSize * 2 - 1;
 	CGFloat *newGrid = calloc( pow(newSize, 2), sizeof(CGFloat));
 	//copy oldNodes
@@ -132,11 +104,9 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 			newGrid[ iy * newSize * 2 + ix * 2 ] = grid[ iy * gridSize + ix];
 		}
 	}
-//	[self printGrid:newGrid withSize:gridSize * 2 - 1  withLabel:@"newGrid Coping"];
 	//randCenters
 	for ( int iy = 0; iy < gridSize - 1; ++iy) {
 		for ( int ix = 0; ix < gridSize - 1; ++ix) {
-//			CGFloat maxValue = MAX( MAX( grid[ (iy + 1) * gridSize + ix], grid[ ( iy + 1) * gridSize + ix + 1]) , MAX(grid[ iy * gridSize + ix], grid[ iy * gridSize + ix + 1]));
 			CGFloat midValue = (grid[ (iy + 1) * gridSize + ix] + grid[ ( iy + 1) * gridSize + ix + 1] +
 								grid[ iy * gridSize + ix] + grid[ iy * gridSize + ix + 1]) / 4.;
 			CGFloat randDeltaValue = ( (arc4random()%200) / 100. ) - 1 ;
@@ -144,20 +114,7 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 			newGrid[ (2 * iy + 1 ) * newSize + ix * 2 + 1 ] = midValue + randDeltaValue;
 		}
 	}
-//	[self printGrid:newGrid withSize:gridSize * 2 - 1 withLabel:@"newGrid randSenters"];
-	
-//	for ( int iy = 1; iy < newSize - 1; ++iy ) {
-//		for ( int ix = (iy % 2) ? 2 : 1; ix < newSize - 1 ; ix += 2) {
-//			
-//			CGFloat midValue = ( newGrid[ (iy - 1) * newSize + ix -1 ] + newGrid[ (iy + 1) * newSize + ix - 1] +
-//						newGrid[ (iy - 1) * newSize + ix + 1] + newGrid[ (iy + 1) * newSize + ix + 1]) / 4.;
-//			
-//			CGFloat randDeltaValue = ( arc4random()%200 / 200. );
-//			randDeltaValue = randDeltaValue * rougntValue;
-//			newGrid[ iy * newSize + ix] = midValue + randDeltaValue;
-////			[self printGrid:newGrid withSize:gridSize * 2 - 1 withLabel:@"newGrid randSenters"];
-//		}
-//	}
+
 	for ( int iy = 0; iy < newSize; ++iy ) {
 		for ( int ix = (iy % 2) ? 0 : 1; ix < newSize ; ix += 2) {
 			CGFloat sum = 0;
@@ -188,7 +145,6 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 			CGFloat randDeltaValue = ( arc4random()%200 / 100. ) - 1;
 			randDeltaValue = randDeltaValue * rougntValue;
 			newGrid[ iy * newSize + ix] = midValue + randDeltaValue;
-//			[self printGrid:newGrid withSize:gridSize * 2 - 1 withLabel:@"newGrid randSenters"];
 		}
 	}
 	@synchronized( self )
@@ -230,6 +186,7 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 				pointRect.origin = CGPointMake(ix * pointsize.width, iy * pointsize.height);
 				CGFloat componentHeight = grid[ iy * gridSize + ix ] / gridmaxHeight;
 				CGContextSetFillColor(c, CGColorGetComponents( [self colorForHeight:componentHeight].CGColor ));
+				//grayscale display
 //				CGContextSetFillColor(c, CGColorGetComponents( [UIColor colorWithRed:componentHeight green:componentHeight blue:componentHeight alpha:1].CGColor ));
 				CGContextFillRect(c, pointRect);
 			}
@@ -245,15 +202,11 @@ static CGFloat const kBLFractalTextureView_R = 2.;
 	CGFloat toRed, toGreen, toBlue, toAlpha;
 	[fromColor getRed:&fromRed green:&fromGreen blue:&fromBlue alpha:&fromAlpha];
 	[toColor getRed:&toRed green:&toGreen blue:&toBlue alpha:&toAlpha];
-	
-//	[fromColor getHue:&fromRed saturation:&fromGreen brightness:&fromBlue alpha:&fromAlpha];
-//	[toColor getHue:&toRed saturation:&toGreen brightness:&toBlue alpha:&toAlpha];
-	
+		
 	toRed = fromRed * ( 1 - progress) + toRed * progress;
 	toGreen = fromGreen * ( 1 - progress) + toGreen * progress;
 	toBlue = fromBlue * ( 1 - progress) + toBlue * progress;
 	toAlpha = fromAlpha * ( 1 - progress) + toAlpha * progress;
-	//	return [UIColor colorWithHue:toRed saturation:toGreen brightness:toBlue alpha:toAlpha];
 	
 	return [UIColor colorWithRed:toRed green:toGreen blue:toBlue alpha:toAlpha];
 }
